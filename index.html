@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>自我介紹 — 思晨 楊</title>
+  <meta name="description" content="思晨 楊 的個人網站：關於我、技能、作品與聯絡方式。">
+
+  <!-- 基礎樣式 -->
+  <style>
+    :root{
+      --bg: #f7f7fb;
+      --card: #ffffff;
+      --primary: #0b84ff;
+      --muted: #6b7280;
+      --radius: 14px;
+      --max-width: 1100px;
+      --gap: 20px;
+      --container-padding: 20px;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* 頁面容器 */
+    .wrap{
+      max-width:var(--max-width);
+      margin:24px auto;
+      padding:var(--container-padding);
+    }
+
+    /* Header / nav */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:48px;
+      height:48px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--primary),#7bd389);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(11,132,255,0.12);
+    }
+    nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:8px 12px;
+      border-radius:8px;
+    }
+    nav a:hover{color:var(--primary); background:rgba(11,132,255,0.06)}
+
+    /* 手機選單按鈕（小螢幕顯示） */
+    .nav-toggle{
+      display:none;
+      background:none;
+      border:0;
+      font-size:24px;
+    }
+
+    /* 主要內容：Hero + Aside 兩欄 */
+    .hero{
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap:var(--gap);
+      align-items:start;
+      margin-bottom:20px;
+    }
+
+    /* 卡片樣式 */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 6px 18px rgba(15,23,42,0.06);
+    }
+
+    /* 大頭照 */
+    .profile-img{
+      width:100%;
+      max-width:260px;
+      height:260px;
+      border-radius:12px;
+      object-fit:cover; /* 圖片裁切並填滿容器，保持同樣尺寸 */
+      display:block;
+      margin:0 auto 12px;
+      box-shadow:0 8px 20px rgba(2,6,23,0.08);
+    }
+
+    .name{
+      font-size:1.5rem;
+      font-weight:700;
+      margin:6px 0;
+      text-align:center;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    /* About / skills */
+    .about p{margin:0 0 12px}
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
+    }
+    .skill{
+      background:#eef6ff;
+      padding:6px 10px;
+      border-radius:999px;
+      color:var(--primary);
+      font-weight:600;
+      font-size:0.9rem;
+    }
+
+    /* 作品集網格 */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .project{
+      border-radius:10px;
+      overflow:hidden;
+      background:#fafafa;
+      border:1px solid #f0f0f3;
+    }
+    .project img{
+      width:100%;
+      height:140px;
+      object-fit:cover;
+      display:block;
+    }
+    .project .proj-body{
+      padding:10px;
+    }
+    .proj-title{font-weight:700; margin:0 0 6px;}
+    .proj-desc{margin:0;color:var(--muted);font-size:0.95rem}
+
+    /* 聯絡表單 */
+    .contact-form{
+      display:grid;
+      gap:10px;
+      margin-top:8px;
+    }
+    .contact-form input,
+    .contact-form textarea{
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #e6e9ef;
+      font-size:1rem;
+      resize:vertical;
+    }
+    .btn{
+      display:inline-block;
+      background:var(--primary);
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    footer{
+      color:var(--muted);
+      font-size:0.9rem;
+      margin-top:20px;
+      text-align:center;
+    }
+
+    /* 響應式：窄螢幕改單欄 */
+    @media (max-width:900px){
+      .hero{grid-template-columns: 1fr;}
+      .projects-grid{grid-template-columns: repeat(2, 1fr);}
+      .nav-toggle{display:block}
+      nav{display:none}
+    }
+    @media (max-width:480px){
+      .projects-grid{grid-template-columns: 1fr;}
+      .profile-img{height:200px; max-width:200px}
+      .name{font-size:1.25rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- header -->
+    <header>
+      <a class="brand" href="#home">
+        <div class="logo">SY</div>
+        <div>
+          <div style="font-weight:700">思晨 楊</div>
+          <div style="font-size:0.85rem;color:var(--muted)">前端開發 • UI 設計愛好者</div>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" onclick="toggleNav()">☰</button>
+
+      <nav id="nav">
+        <a href="#about">關於我</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">作品</a>
+        <a href="#contact">聯絡</a>
+      </nav>
+    </header>
+
+    <!-- hero 區塊：左側大頭照，右側簡介 -->
+    <main>
+      <section class="hero">
+        <!-- 左側：大頭照 + 基本資料 -->
+        <aside class="card" style="text-align:center">
+          <!-- 在此處替換頭像圖片：把 src 換成你的圖片路徑 -->
+          <img class="profile-img" src="images/profile.jpg" alt="個人大頭照">
+          <div class="name">思晨 楊</div>
+          <div class="subtitle">前端工程師 / 網頁設計 • Taipei, Taiwan</div>
+
+          <div style="margin-top:10px; text-align:left;">
+            <div style="font-weight:700; margin-bottom:6px">聯絡方式</div>
+            <div style="color:var(--muted); font-size:0.95rem">
+              Email: <a href="mailto:youremail@example.com">youremail@example.com</a><br>
+              LinkedIn: <a href="#" target="_blank">你的 LinkedIn</a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- 右側：關於我 + 技能 -->
+        <div>
+          <section id="about" class="card about">
+            <h2 style="margin-top:0">關於我</h2>
+            <p>嗨，我是思晨，專注於前端開發與使用者介面設計。我喜歡把複雜的 UI 轉成直覺且易用的互動體驗，熟悉 HTML、CSS、JavaScript 與 React。</p>
+            <p>目前就讀於某某大學資訊相關科系，並參與過 Web 專案與校內設計競賽。</p>
+            <div style="margin-top:8px">
+              <a class="btn" href="#contact">聯絡我</a>
+            </div>
+          </section>
+
+          <section id="skills" class="card" style="margin-top:12px;">
+            <h3 style="margin-top:0">技能</h3>
+            <div class="skills">
+              <div class="skill">HTML</div>
+              <div class="skill">CSS / SCSS</div>
+              <div class="skill">JavaScript</div>
+              <div class="skill">React</div>
+              <div class="skill">Responsive Design</div>
+              <div class="skill">Figma</div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- 作品集 -->
+      <section id="projects" class="card" style="margin-bottom:12px;">
+        <h3 style="margin-top:0">作品集</h3>
+        <div class="projects-grid">
+          <!-- 範例作品 1：將 <img> 的 src 改為你的作品截圖 -->
+          <div class="project">
+            <img src="images/project1.jpg" alt="作品 1">
+            <div class="proj-body">
+              <div class="proj-title">作品名稱 A</div>
+              <div class="proj-desc">使用技術：HTML / CSS / JS。簡短描述你的作品與連結。</div>
+            </div>
+          </div>
+
+          <!-- 範例作品 2 -->
+          <div class="project">
+            <img src="images/project2.jpg" alt="作品 2">
+            <div class="proj-body">
+              <div class="proj-title">作品名稱 B</div>
+              <div class="proj-desc">使用技術：React / API。簡短描述或放 GitHub 連結。</div>
+            </div>
+          </div>
+
+          <!-- 範例作品 3 -->
+          <div class="project">
+            <img src="images/project3.jpg" alt="作品 3">
+            <div class="proj-body">
+              <div class="proj-title">作品名稱 C</div>
+              <div class="proj-desc">使用技術：UI/UX 設計稿與實作範例。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 聯絡表單 -->
+      <section id="contact" class="card">
+        <h3 style="margin-top:0">聯絡我</h3>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <input type="text" id="name" placeholder="你的名字" required>
+          <input type="email" id="email" placeholder="你的 Email" required>
+          <textarea id="message" rows="5" placeholder="想說的話..." required></textarea>
+          <div>
+            <button class="btn" type="submit">送出訊息</button>
+          </div>
+        </form>
+      </section>
+
+      <footer>
+        © <span id="year"></span> 思晨 楊 • Built with ❤
+      </footer>
+    </main>
+  </div>
+
+  <!-- 簡單 JavaScript：導航切換與表單處理 -->
+  <script>
+    // 導覽列在手機時開關
+    function toggleNav(){
+      const nav = document.getElementById('nav');
+      if(nav.style.display === 'flex' || nav.style.display === '') {
+        nav.style.display = 'none';
+      } else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.right = '20px';
+        nav.style.top = '70px';
+        nav.style.background = 'white';
+        nav.style.padding = '12px';
+        nav.style.borderRadius = '10px';
+        nav.style.boxShadow = '0 8px 24px rgba(2,6,23,0.08)';
+      }
+    }
+
+    // 簡單表單處理（示範用，不會真的送出）
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+        alert('請完整填寫所有欄位');
+        return;
+      }
+      // 這裡可改成呼叫 API 或使用 Formspree/Netlify Forms 等服務
+      alert('感謝 ' + name + ' 的訊息！(示範用，不會真的送出)');
+      document.querySelector('.contact-form').reset();
+    }
+
+    // 自動填入年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
